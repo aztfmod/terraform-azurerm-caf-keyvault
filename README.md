@@ -62,6 +62,7 @@ akv_config = {
 
 ## location
 (Required) Location of the resource to be created.
+
 ```hcl 
 variable "location" {
   description = "(Required) Location of the AKV to be created"   
@@ -69,6 +70,7 @@ variable "location" {
 ```
 
 Sample:
+
 ```hcl 
 location = "southeastasia"
 ```
@@ -82,19 +84,23 @@ variable "rg" {
   description = "(Required) Resource group of the public IP to be created"    
 }
 ```
+
 Sample:
+
 ```hcl 
 rg = "myrg"
 ```
 
 ## tags
-(Required) Map of tags for the deployment
+(Required) Map of tags for the deployment.
+
 ```hcl
 variable "tags" {
   description = "(Required) map of tags for the deployment"
 }
 ```
 Example
+
 ```hcl
 tags = {
     environment     = "DEV"
@@ -105,24 +111,28 @@ tags = {
 
 ## log_analytics_workspace
 (Required) Log Analytics workspace for AKV
+
 ```hcl
 variable "log_analytics_workspace" {
   description = "(Required) Log Analytics workspace for AKV"
 }
 ```
 Example
+
 ```hcl
 log_analytics_workspace = module.loganalytics.object
 ```
 
 ## diagnostics_map
 (Required) Map with the diagnostics repository information"
+
 ```hcl
 variable "diagnostics_map" {
  description = "(Required) Map with the diagnostics repository information"
 }
 ```
 Example
+
 ```hcl
   diagnostics_map = {
       diags_sa      = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/arnaud-hub-operations/providers/Microsoft.Storage/storageAccounts/opslogskumowxv"
@@ -141,6 +151,7 @@ variable "diagnostics_settings" {
 }
 ```
 Example
+
 ```hcl
 diagnostics_settings = {
     log = [
@@ -157,6 +168,7 @@ diagnostics_settings = {
 # Output
 ## object
 Returns the resource object of the created AKV.
+
 ```hcl
 output "object" {
   value = azurerm_key_vault.akv
@@ -165,6 +177,7 @@ output "object" {
 
 ## name
 Returns the resource name of the created AKV.
+
 ```hcl
 output "name" {
   value = azurerm_key_vault.akv.name
@@ -174,6 +187,7 @@ output "name" {
 
 ## id
 Returns the resource ID of the created AKV.
+
 ```hcl
 output "id" {
   value = azurerm_key_vault.akv.id
@@ -182,6 +196,7 @@ output "id" {
 
 ## vault_uri
 Returns the FQDN of the created AKV.
+
 ```hcl
 output "vault_uri" {
   value = azurerm_key_vault.akv.vault_uri

@@ -183,7 +183,7 @@ output "id" {
 ## vault_uri
 Returns the FQDN of the created AKV.
 ```hcl
-output "fqdn" {
-  value = azurerm_public_ip.public_ip.fqdn
+output "vault_uri" {
+  value = azurerm_key_vault.akv.vault_uri
 }
 ```

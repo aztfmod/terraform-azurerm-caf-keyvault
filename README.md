@@ -1,17 +1,20 @@
 # Deploys an Azure Key Vault
+
 Creates an Azure Key Vault.
 
 Supported features:
+
 1. AKV name is generated randomly based on (prefix+name)+randomly generated string to ensure WW uniqueness (created on 24 chars, which is max name length of AKV name)
 2. AKV main settings: enabled for deployment, disk encryption, template deployment
 3. AKV SKU: Premium or Standard
 4. AKV networks ACL
 
 Non-supported features:
+
 1. Support for AKV policies is kept outside of this module in order to preserve consistency of policies. Ie: for each AKV creation, you should set your access policy tailored to the specific purpose (see AKV sample policy file - access_policy_sample.tf)
 
-
 Reference the module to a specific version (recommended):
+
 ```hcl
 module "azurekevault" {
     source  = "aztfmod/caf-keyvault/azurerm"
@@ -28,9 +31,10 @@ module "azurekevault" {
 }
 ```
 
-# Parameters
+## Parameters
 
-## akv_config 
+### akv_config
+
 (Required) Key Vault Configuration Object"
 
 ```hcl
@@ -40,6 +44,7 @@ variable "akv_config" {
 ```
 
 Sample:
+
 ```hcl
 akv_config = {
     name       = "myakv"
@@ -47,8 +52,8 @@ akv_config = {
     akv_features = {
         enabled_for_disk_encryption = true
         enabled_for_deployment      = false
-        enabled_for_template_deployment = true 
-    } 
+        enabled_for_template_deployment = true
+    }
     #akv_features is optional
 
     sku_name = "premium"
@@ -60,38 +65,40 @@ akv_config = {
 }
 ```
 
-## location
+### location
+
 (Required) Location of the resource to be created.
 
-```hcl 
+```hcl
 variable "location" {
-  description = "(Required) Location of the AKV to be created"   
+  description = "(Required) Location of the AKV to be created"
 }
 ```
 
 Sample:
 
-```hcl 
+```hcl
 location = "southeastasia"
 ```
 
+### rg
 
-## rg 
-(Required) Resource group of the resource to be created. 
+(Required) Resource group of the resource to be created.
 
-```hcl 
+```hcl
 variable "rg" {
-  description = "(Required) Resource group of the public IP to be created"    
+  description = "(Required) Resource group of the public IP to be created"
 }
 ```
 
 Sample:
 
-```hcl 
+```hcl
 rg = "myrg"
 ```
 
-## tags
+### tags
+
 (Required) Map of tags for the deployment.
 
 ```hcl
@@ -99,6 +106,7 @@ variable "tags" {
   description = "(Required) map of tags for the deployment"
 }
 ```
+
 Example
 
 ```hcl
@@ -110,6 +118,7 @@ tags = {
 ```
 
 ## log_analytics_workspace
+
 (Required) Log Analytics workspace for AKV
 
 ```hcl
@@ -117,6 +126,7 @@ variable "log_analytics_workspace" {
   description = "(Required) Log Analytics workspace for AKV"
 }
 ```
+
 Example
 
 ```hcl
@@ -124,6 +134,7 @@ log_analytics_workspace = module.loganalytics.object
 ```
 
 ## diagnostics_map
+
 (Required) Map with the diagnostics repository information"
 
 ```hcl
@@ -131,6 +142,7 @@ variable "diagnostics_map" {
  description = "(Required) Map with the diagnostics repository information"
 }
 ```
+
 Example
 
 ```hcl
@@ -141,7 +153,8 @@ Example
   }
 ```
 
-## diagnostics_settings
+### diagnostics_settings
+
 (Required) Map with the diagnostics settings for AKV deployment.
 See the required structure in the following example or in the diagnostics module documentation.
 
@@ -150,23 +163,26 @@ variable "diagnostics_settings" {
  description = "(Required) Map with the diagnostics settings for AKV deployment"
 }
 ```
+
 Example
 
 ```hcl
 diagnostics_settings = {
     log = [
-                # ["Category name",  "Diagnostics Enabled(true/false)", "Retention Enabled(true/false)", Retention_period] 
+                # ["Category name",  "Diagnostics Enabled(true/false)", "Retention Enabled(true/false)", Retention_period]
                 ["AuditEvent", true, true, 60],
         ]
     metric = [
-                #["Category name",  "Diagnostics Enabled(true/false)", "Retention Enabled(true/false)", Retention_period]                 
+                #["Category name",  "Diagnostics Enabled(true/false)", "Retention Enabled(true/false)", Retention_period]
                   ["AllMetrics", true, true, 60],
     ]
 }
 ```
 
-# Output
-## object
+## Output
+
+### object
+
 Returns the resource object of the created AKV.
 
 ```hcl
@@ -175,7 +191,8 @@ output "object" {
 }
 ```
 
-## name
+### name
+
 Returns the resource name of the created AKV.
 
 ```hcl
@@ -185,7 +202,8 @@ output "name" {
 
 ```
 
-## id
+### id
+
 Returns the resource ID of the created AKV.
 
 ```hcl
@@ -195,6 +213,7 @@ output "id" {
 ```
 
 ## vault_uri
+
 Returns the FQDN of the created AKV.
 
 ```hcl

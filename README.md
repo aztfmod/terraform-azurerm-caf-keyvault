@@ -212,7 +212,7 @@ output "id" {
 }
 ```
 
-## vault_uri
+### vault_uri
 
 Returns the FQDN of the created AKV.
 

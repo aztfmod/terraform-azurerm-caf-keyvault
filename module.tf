@@ -1,16 +1,13 @@
-resource "random_string" "kv_name" {
-  length  = 23 - (length(var.prefix)+length(var.akv_config.name))
-  special = false
-  upper   = false
-  number  = true
-}
-
-locals {
-    kv_name = "${var.prefix}${var.akv_config.name}${random_string.kv_name.result}"
+module "caf_name_akv" {
+  source = "../terraform-azurerm-caf-naming/"
+  
+  name    = var.name
+  type    = "akv"
+  convention  = var.convention
 }
 
 resource "azurerm_key_vault" "akv" {
-    name                            = local.kv_name
+    name                            = module.caf_name_akv.akv
     location                        = var.location
     resource_group_name             = var.rg
     tenant_id                       = data.azurerm_client_config.current.tenant_id

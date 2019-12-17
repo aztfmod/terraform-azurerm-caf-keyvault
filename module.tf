@@ -1,13 +1,13 @@
-module "caf_name_akv" {
+module "caf_name_kv" {
   source = "../terraform-azurerm-caf-naming/"
   
-  name    = var.name
-  type    = "akv"
+  name    = var.akv_config.name
+  type    = "kv"
   convention  = var.convention
 }
 
 resource "azurerm_key_vault" "akv" {
-    name                            = module.caf_name_akv.akv
+    name                            = module.caf_name_kv.kv
     location                        = var.location
     resource_group_name             = var.rg
     tenant_id                       = data.azurerm_client_config.current.tenant_id

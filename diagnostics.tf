@@ -1,7 +1,6 @@
 module "diagnostics_akv" {
-  # source  = "aztfmod/caf-diagnostics/azurerm"
-  # version = "0.1.1"
-  source = "git://github.com/aztfmod/terraform-azurerm-caf-diagnostics.git?ref=1912-Refresh"
+  source  = "aztfmod/caf-diagnostics/azurerm"
+  version = "1.0.0"
 
     name                            = azurerm_key_vault.akv.name
     resource_id                     = azurerm_key_vault.akv.id

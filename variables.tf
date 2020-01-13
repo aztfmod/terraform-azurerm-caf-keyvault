@@ -32,3 +32,7 @@ variable "prefix" {
 variable "akv_config" {
   description = "(Required) Key Vault Configuration Object"
 }
+
+variable "convention" {
+  description = "(Required) Naming convention method to use"  
+}

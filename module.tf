@@ -1,16 +1,14 @@
-resource "random_string" "kv_name" {
-  length  = 23 - (length(var.prefix)+length(var.akv_config.name))
-  special = false
-  upper   = false
-  number  = true
-}
-
-locals {
-    kv_name = "${var.prefix}${var.akv_config.name}${random_string.kv_name.result}"
+module "caf_name_kv" {
+  source  = "aztfmod/caf-naming/azurerm"
+  version = "~> 0.1.0"
+  
+  name    = var.akv_config.name
+  type    = "kv"
+  convention  = var.convention
 }
 
 resource "azurerm_key_vault" "akv" {
-    name                            = local.kv_name
+    name                            = module.caf_name_kv.kv
     location                        = var.location
     resource_group_name             = var.rg
     tenant_id                       = data.azurerm_client_config.current.tenant_id

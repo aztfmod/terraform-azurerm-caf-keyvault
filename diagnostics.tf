@@ -1,6 +1,6 @@
 module "diagnostics_akv" {
   source  = "aztfmod/caf-diagnostics/azurerm"
-  version = "0.1.1"
+  version = "1.0.0"
 
     name                            = azurerm_key_vault.akv.name
     resource_id                     = azurerm_key_vault.akv.id

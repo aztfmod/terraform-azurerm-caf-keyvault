@@ -18,7 +18,7 @@ Reference the module to a specific version (recommended):
 ```hcl
 module "azurekevault" {
     source  = "aztfmod/caf-keyvault/azurerm"
-    version = "0.1.0"
+    version = "0.x.y"
 
     prefix                            = var.prefix
     location                          = var.location
@@ -179,45 +179,23 @@ diagnostics_settings = {
 }
 ```
 
+## convention
+(Required) Naming convention to be used.
+```hcl
+variable "convention" {
+  description = "(Required) Naming convention used"
+}
+```
+Example
+```hcl
+convention = "cafclassic"
+```
+
 ## Output
 
-### object
-
-Returns the resource object of the created AKV.
-
-```hcl
-output "object" {
-  value = azurerm_key_vault.akv
-}
-```
-
-### name
-
-Returns the resource name of the created AKV.
-
-```hcl
-output "name" {
-  value = azurerm_key_vault.akv.name
-}
-
-```
-
-### id
-
-Returns the resource ID of the created AKV.
-
-```hcl
-output "id" {
-  value = azurerm_key_vault.akv.id
-}
-```
-
-### vault_uri
-
-Returns the FQDN of the created AKV.
-
-```hcl
-output "vault_uri" {
-  value = azurerm_key_vault.akv.vault_uri
-}
-```
+| Name | Type | Description | 
+| -- | -- | -- | 
+| object | object | Returns the full object of the created AKV. |
+| name | string | Returns the name of the created AKV. |
+| id | string | Returns the ID of the created AKV. | 
+| vault_uri | string | Returns the FQDN of the created AKV. |

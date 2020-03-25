@@ -1,16 +1,16 @@
-module "caf_name_kv" {
-  source  = "aztfmod/caf-naming/azurerm"
-  version = "~> 0.1.0"
-  
-  name    = var.akv_config.name
-  type    = "kv"
-  convention  = var.convention
+resource "azurecaf_naming_convention" "caf_name_kv" {  
+  name          = var.akv_config.name
+  prefix        = var.prefix != "" ? var.prefix : null
+  postfix       = var.postfix != "" ? var.postfix : null
+  max_length    = var.max_length != "" ? var.max_length : null
+  resource_type = "azurerm_key_vault"
+  convention    = var.convention
 }
 
 resource "azurerm_key_vault" "akv" {
-    name                            = module.caf_name_kv.kv
+    name                            = azurecaf_naming_convention.caf_name_kv.result
     location                        = var.location
-    resource_group_name             = var.rg
+    resource_group_name             = var.resource_group_name
     tenant_id                       = data.azurerm_client_config.current.tenant_id
     tags                            = local.tags
     sku_name                        = var.akv_config.sku_name

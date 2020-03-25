@@ -22,7 +22,7 @@ module "azurekevault" {
 
     prefix                            = var.prefix
     location                          = var.location
-    rg                                = var.rg
+    resource_group_name               = var.resource_group_name
     akv_config                        = var.akv_config
     tags                              = var.tags
     diagnostics_settings              = var.ipdiags
@@ -81,12 +81,12 @@ Sample:
 location = "southeastasia"
 ```
 
-### rg
+### resource_group_name
 
 (Required) Resource group of the resource to be created.
 
 ```hcl
-variable "rg" {
+variable "resource_group_name" {
   description = "(Required) Resource group of the public IP to be created"
 }
 ```
@@ -94,7 +94,7 @@ variable "rg" {
 Sample:
 
 ```hcl
-rg = "myrg"
+resource_group_name = "myrg"
 ```
 
 ### tags

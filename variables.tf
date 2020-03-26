@@ -8,17 +8,14 @@ variable "resource_group_name" {
 
 variable "tags" {
   description = "(Required) Tags to be applied to the AKV to be created"
-  
 }
 
 variable "diagnostics_map" {
   description = "(Required) Storage account and Event Hub for AKV"  
-
 }
 
 variable "log_analytics_workspace" {
   description = "(Required) Log Analytics workspace for AKV"
-  
 }
 
 variable "diagnostics_settings" {

@@ -11,7 +11,7 @@ resource "azurerm_resource_group" "rg_test" {
 
 module "la_test" {
   source  = "aztfmod/caf-log-analytics/azurerm"
-  version = "1.0.0"
+  version = "2.0.0"
   
     convention          = local.convention
     location            = local.location
@@ -24,7 +24,7 @@ module "la_test" {
 
 module "diags_test" {
   source  = "aztfmod/caf-diagnostics-logging/azurerm"
-  version = "1.0.0"
+  version = "2.0.0"
 
   resource_group_name   = azurerm_resource_group.rg_test.name
   prefix                = local.prefix

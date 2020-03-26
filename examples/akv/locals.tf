@@ -21,7 +21,7 @@ locals {
     }
 
     akv_config = {
-        name       = "monakv"
+        name       = "test-caf-akv"
 
         akv_features = {
             enabled_for_disk_encryption = true

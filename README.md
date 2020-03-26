@@ -1,3 +1,5 @@
+[![Gitter](https://badges.gitter.im/aztfmod/community.svg)](https://gitter.im/aztfmod/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
+
 # Deploys an Azure Key Vault
 
 Creates an Azure Key Vault.

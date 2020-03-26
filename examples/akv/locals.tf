@@ -14,9 +14,9 @@ locals {
         owner           = "CAF"
     }
     solution_plan_map = {
-        NetworkMonitoring = {
+        KeyVaultAnalytics = {
             "publisher" = "Microsoft"
-            "product"   = "OMSGallery/NetworkMonitoring"
+            "product"   = "OMSGallery/KeyVaultAnalytics"
         },
     }
 

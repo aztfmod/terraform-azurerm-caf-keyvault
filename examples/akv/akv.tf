@@ -1,42 +1,45 @@
-module "rg_test" {
-  source  = "aztfmod/caf-resource-group/azurerm"
-  version = "0.1.1"
-  
-    prefix          = local.prefix
-    resource_groups = local.resource_groups
-    tags            = local.tags
+provider "azurerm" {
+   features {}
 }
+
+resource "azurerm_resource_group" "rg_test" {
+  name     = local.resource_groups.test.name
+  location = local.resource_groups.test.location
+  tags     = local.tags
+}
+
 
 module "la_test" {
   source  = "aztfmod/caf-log-analytics/azurerm"
-  version = "0.1.0"
+  version = "2.0.1"
   
-    # convention          = local.convention
+    convention          = local.convention
     location            = local.location
     name                = local.name
     solution_plan_map   = local.solution_plan_map 
     prefix              = local.prefix
-    resource_group_name = module.rg_test.names.test
+    resource_group_name = azurerm_resource_group.rg_test.name
     tags                = local.tags
 }
 
 module "diags_test" {
   source  = "aztfmod/caf-diagnostics-logging/azurerm"
-  version = "0.1.2"
+  version = "2.0.1"
 
-  resource_group_name   = module.rg_test.names.test
+  resource_group_name   = azurerm_resource_group.rg_test.name
   prefix                = local.prefix
   location              = local.location
   tags                  = local.tags
+  convention            = local.convention
+  name                  = local.name
 }
 
 module "akv_test" {
   source = "../../"
   
-  prefix                   = local.prefix
   convention               = local.convention
   akv_config               = local.akv_config
-  rg                       = module.rg_test.names.test
+  resource_group_name      = azurerm_resource_group.rg_test.name
   location                 = local.location 
   tags                     = local.tags
   log_analytics_workspace  = module.la_test

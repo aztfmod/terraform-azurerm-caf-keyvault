@@ -1,11 +1,11 @@
 locals {
-    convention = "random"
+    convention = "cafrandom"
     name = "caftestakv"
     location = "southeastasia"
     prefix = ""
     resource_groups = {
         test = { 
-            name     = "test-caf-azfw"
+            name     = "test-caf-akv"
             location = "southeastasia" 
         },
     }
@@ -14,14 +14,14 @@ locals {
         owner           = "CAF"
     }
     solution_plan_map = {
-        NetworkMonitoring = {
+        KeyVaultAnalytics = {
             "publisher" = "Microsoft"
-            "product"   = "OMSGallery/NetworkMonitoring"
+            "product"   = "OMSGallery/KeyVaultAnalytics"
         },
     }
 
     akv_config = {
-        name       = "monakv"
+        name       = "test-caf-akv"
 
         akv_features = {
             enabled_for_disk_encryption = true

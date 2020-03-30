@@ -1,3 +1,5 @@
+[![Gitter](https://badges.gitter.im/aztfmod/community.svg)](https://gitter.im/aztfmod/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
+
 # Deploys an Azure Key Vault
 
 Creates an Azure Key Vault.
@@ -22,7 +24,7 @@ module "azurekevault" {
 
     prefix                            = var.prefix
     location                          = var.location
-    rg                                = var.rg
+    resource_group_name               = var.resource_group_name
     akv_config                        = var.akv_config
     tags                              = var.tags
     diagnostics_settings              = var.ipdiags
@@ -30,6 +32,23 @@ module "azurekevault" {
     log_analytics_workspace           = var.laworkspace
 }
 ```
+
+## Inputs
+
+| Name | Type | Default | Description |
+| -- | -- | -- | -- |
+| resource_group_name | string | None | (Required) Name of the resource group where to create the resource. Changing this forces a new resource to be created. |
+| location | string | None | (Required) Specifies the Azure location to deploy the resource. Changing this forces a new resource to be created.  |
+| tags | map | None | (Required) Map of tags for the deployment.  |
+| log_analytics_workspace | string | None | (Required) Log Analytics Workspace. |
+| diagnostics_map | map | None | (Required) Map with the diagnostics repository information.  |
+| diagnostics_settings | object | None | (Required) Map with the diagnostics settings. See the required structure in the following example or in the diagnostics module documentation. |
+| akv_config | object | None | (Required) Key Vault Configuration Object as described in the Parameters section. |
+| convention | string | None | (Required) Naming convention to be used (check at the naming convention module for possible values).  |
+| prefix | string | None | (Optional) Prefix to be used. |
+| postfix | string | None | (Optional) Postfix to be used. |
+| max_length | string | None | (Optional) maximum length to the name of the resource. |
+
 
 ## Parameters
 
@@ -65,57 +84,6 @@ akv_config = {
 }
 ```
 
-### location
-
-(Required) Location of the resource to be created.
-
-```hcl
-variable "location" {
-  description = "(Required) Location of the AKV to be created"
-}
-```
-
-Sample:
-
-```hcl
-location = "southeastasia"
-```
-
-### rg
-
-(Required) Resource group of the resource to be created.
-
-```hcl
-variable "rg" {
-  description = "(Required) Resource group of the public IP to be created"
-}
-```
-
-Sample:
-
-```hcl
-rg = "myrg"
-```
-
-### tags
-
-(Required) Map of tags for the deployment.
-
-```hcl
-variable "tags" {
-  description = "(Required) map of tags for the deployment"
-}
-```
-
-Example
-
-```hcl
-tags = {
-    environment     = "DEV"
-    owner           = "Arnaud"
-    deploymentType  = "Terraform"
-  }
-```
 
 ## log_analytics_workspace
 
@@ -179,17 +147,6 @@ diagnostics_settings = {
 }
 ```
 
-## convention
-(Required) Naming convention to be used.
-```hcl
-variable "convention" {
-  description = "(Required) Naming convention used"
-}
-```
-Example
-```hcl
-convention = "cafclassic"
-```
 
 ## Output
 

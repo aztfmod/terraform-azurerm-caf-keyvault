@@ -18,6 +18,8 @@ resource "azurerm_key_vault" "akv" {
     enabled_for_disk_encryption     = lookup(var.akv_config.akv_features, "enabled_for_disk_encryption", null)
     enabled_for_deployment          = lookup(var.akv_config.akv_features, "enabled_for_deployment", null)
     enabled_for_template_deployment = lookup(var.akv_config.akv_features, "enabled_for_template_deployment", null)
+    soft_delete_enabled             = lookup(var.akv_config.akv_features, "soft_delete_enabled", null)
+
 
     dynamic "network_acls" {
     for_each = lookup(var.akv_config, "network_acls", {}) != {} ? [1] : []

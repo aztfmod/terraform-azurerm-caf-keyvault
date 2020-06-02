@@ -1,3 +1,10 @@
+## v2.0.2 (June 2020)
+
+FEATURES: 
+* **new feature:**  Add purge_protection_enabled for Key Vault ([#8](https://github.com/aztfmod/terraform-azurerm-caf-keyvault/issues/8))
+
+
+
 ## v2.0.1 (May 2020)
 
 FEATURES: 

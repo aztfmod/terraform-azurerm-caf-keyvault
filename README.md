@@ -73,6 +73,7 @@ akv_config = {
         enabled_for_deployment      = false
         enabled_for_template_deployment = true
         soft_delete_enabled = true
+        purge_protection_enabled = true
     }
     #akv_features is optional
 

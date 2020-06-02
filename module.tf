@@ -19,6 +19,7 @@ resource "azurerm_key_vault" "akv" {
     enabled_for_deployment          = lookup(var.akv_config.akv_features, "enabled_for_deployment", null)
     enabled_for_template_deployment = lookup(var.akv_config.akv_features, "enabled_for_template_deployment", null)
     soft_delete_enabled             = lookup(var.akv_config.akv_features, "soft_delete_enabled", null)
+    purge_protection_enabled        = lookup(var.akv_config.akv_features, "purge_protection_enabled", null)
 
 
     dynamic "network_acls" {

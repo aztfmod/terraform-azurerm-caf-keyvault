@@ -35,6 +35,42 @@ module "azurekevault" {
 ```
 
 <!--- BEGIN_TF_DOCS --->
+## Requirements
+
+No requirements.
+
+## Providers
+
+| Name | Version |
+|------|---------|
+| azurecaf | n/a |
+| azurerm | n/a |
+
+## Inputs
+
+| Name | Description | Type | Default | Required |
+|------|-------------|------|---------|:--------:|
+| akv\_config | (Required) Key Vault Configuration Object | `any` | n/a | yes |
+| convention | (Required) Naming convention method to use | `any` | n/a | yes |
+| diagnostics\_map | (Required) Storage account and Event Hub for AKV | `any` | n/a | yes |
+| diagnostics\_settings | (Required) Map with the diagnostics settings for AKV | `any` | n/a | yes |
+| location | (Required) Location of the AKV to be created | `any` | n/a | yes |
+| log\_analytics\_workspace | (Required) Log Analytics workspace for AKV | `any` | n/a | yes |
+| max\_length | (Optional) You can speficy a maximum length to the name of the resource | `string` | `""` | no |
+| postfix | (Optional) You can use a postfix to the name of the resource | `string` | `""` | no |
+| prefix | (Optional) You can use a prefix to the name of the resource | `string` | `""` | no |
+| resource\_group\_name | (Required) Resource group name of the AKV to be created | `any` | n/a | yes |
+| tags | (Required) Tags to be applied to the AKV to be created | `any` | n/a | yes |
+
+## Outputs
+
+| Name | Description |
+|------|-------------|
+| id | returns the ID of Azure Key Vault |
+| name | returns the name of Azure Key Vault |
+| object | returns the full Azure Key Vault Object |
+| vault\_uri | returns the vault URI of Azure Key Vault |
+
 <!--- END_TF_DOCS --->
 
 

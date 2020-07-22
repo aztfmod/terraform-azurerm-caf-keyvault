@@ -1,3 +1,9 @@
+## v2.1.0 (July 2020)
+
+FEATURES: 
+* **new feature:**  Add support for Terraform 013 ([#9](https://github.com/aztfmod/terraform-azurerm-caf-keyvault/issues/9))
+
+
 ## v2.0.2 (June 2020)
 
 FEATURES: 

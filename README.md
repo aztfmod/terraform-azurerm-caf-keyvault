@@ -1,3 +1,4 @@
+[![VScodespaces](https://img.shields.io/endpoint?url=https%3A%2F%2Faka.ms%2Fvso-badge)](https://online.visualstudio.com/environments/new?name=terraform-azurerm-caf-keyvault&repo=aztfmod/terraform-azurerm-caf-keyvault)
 [![Gitter](https://badges.gitter.im/aztfmod/community.svg)](https://gitter.im/aztfmod/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
 # Deploys an Azure Key Vault
@@ -33,21 +34,44 @@ module "azurekevault" {
 }
 ```
 
+<!--- BEGIN_TF_DOCS --->
+## Requirements
+
+No requirements.
+
+## Providers
+
+| Name | Version |
+|------|---------|
+| azurecaf | n/a |
+| azurerm | n/a |
+
 ## Inputs
 
-| Name | Type | Default | Description |
-| -- | -- | -- | -- |
-| resource_group_name | string | None | (Required) Name of the resource group where to create the resource. Changing this forces a new resource to be created. |
-| location | string | None | (Required) Specifies the Azure location to deploy the resource. Changing this forces a new resource to be created.  |
-| tags | map | None | (Required) Map of tags for the deployment.  |
-| log_analytics_workspace | string | None | (Required) Log Analytics Workspace. |
-| diagnostics_map | map | None | (Required) Map with the diagnostics repository information.  |
-| diagnostics_settings | object | None | (Required) Map with the diagnostics settings. See the required structure in the following example or in the diagnostics module documentation. |
-| akv_config | object | None | (Required) Key Vault Configuration Object as described in the Parameters section. |
-| convention | string | None | (Required) Naming convention to be used (check at the naming convention module for possible values).  |
-| prefix | string | None | (Optional) Prefix to be used. |
-| postfix | string | None | (Optional) Postfix to be used. |
-| max_length | string | None | (Optional) maximum length to the name of the resource. |
+| Name | Description | Type | Default | Required |
+|------|-------------|------|---------|:--------:|
+| akv\_config | (Required) Key Vault Configuration Object | `any` | n/a | yes |
+| convention | (Required) Naming convention method to use | `any` | n/a | yes |
+| diagnostics\_map | (Required) Storage account and Event Hub for AKV | `any` | n/a | yes |
+| diagnostics\_settings | (Required) Map with the diagnostics settings for AKV | `any` | n/a | yes |
+| location | (Required) Location of the AKV to be created | `any` | n/a | yes |
+| log\_analytics\_workspace | (Required) Log Analytics workspace for AKV | `any` | n/a | yes |
+| max\_length | (Optional) You can speficy a maximum length to the name of the resource | `string` | `""` | no |
+| postfix | (Optional) You can use a postfix to the name of the resource | `string` | `""` | no |
+| prefix | (Optional) You can use a prefix to the name of the resource | `string` | `""` | no |
+| resource\_group\_name | (Required) Resource group name of the AKV to be created | `any` | n/a | yes |
+| tags | (Required) Tags to be applied to the AKV to be created | `any` | n/a | yes |
+
+## Outputs
+
+| Name | Description |
+|------|-------------|
+| id | returns the ID of Azure Key Vault |
+| name | returns the name of Azure Key Vault |
+| object | returns the full Azure Key Vault Object |
+| vault\_uri | returns the vault URI of Azure Key Vault |
+
+<!--- END_TF_DOCS --->
 
 
 ## Parameters
@@ -148,13 +172,3 @@ diagnostics_settings = {
     ]
 }
 ```
-
-
-## Output
-
-| Name | Type | Description | 
-| -- | -- | -- | 
-| object | object | Returns the full object of the created AKV. |
-| name | string | Returns the name of the created AKV. |
-| id | string | Returns the ID of the created AKV. | 
-| vault_uri | string | Returns the FQDN of the created AKV. |
